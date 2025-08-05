@@ -1,0 +1,585 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap');
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #3b82f6;
+  --secondary: #06b6d4;
+  --accent: #10b981;
+  --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --dark: #0f172a;
+  --dark-light: #1e293b;
+  --gray: #64748b;
+  --gray-light: #94a3b8;
+  --gray-bg: #f8fafc;
+  --white: #ffffff;
+  --border: #e2e8f0;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-xl: 0 35px 60px -12px rgba(0, 0, 0, 0.3);
+  --radius: 16px;
+  --radius-lg: 24px;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.fishing-spot-list {
+  padding: 60px 20px;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Hero Header */
+.fishing-spot-list h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 30px rgba(255, 255, 255, 0.3);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* Modern Search Bar */
+.fishing-spot-search {
+  display: block;
+  margin: 0 auto 60px auto;
+  width: min(600px, 90vw);
+  padding: 20px 32px;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  font-size: 1.125rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: var(--dark);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fishing-spot-search:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 4px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  background: var(--white);
+}
+
+.fishing-spot-search::placeholder {
+  color: var(--gray);
+  font-weight: 400;
+}
+
+/* Share Button */
+.share-spot-btn-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.share-spot-btn {
+  background: var(--gradient-2);
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  padding: 16px 32px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.share-spot-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+  background: linear-gradient(135deg, #f093fb 0%, #e91e63 100%);
+}
+
+/* Modern Grid */
+.fishing-spot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Premium Card Design */
+.fishing-spot-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.fishing-spot-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.fishing-spot-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.fishing-spot-card:hover::before {
+  opacity: 1;
+}
+
+/* Map Container */
+.fishing-spot-map {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.fishing-spot-map::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.1));
+  pointer-events: none;
+}
+
+/* Card Content */
+.fishing-spot-info {
+  padding: 32px 28px;
+}
+
+.fishing-spot-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--dark);
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.3;
+}
+
+.fishing-spot-details {
+  margin-bottom: 24px;
+}
+
+.fishing-spot-details div {
+  font-size: 0.95rem;
+  color: var(--gray);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.fishing-spot-details strong {
+  color: var(--dark);
+  font-weight: 600;
+  min-width: 80px;
+}
+
+/* Action Buttons */
+.fishing-spot-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.fishing-spot-actions button {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+}
+
+.fishing-spot-actions button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+/* Premium Modal */
+.spot-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.spot-modal-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  padding: 0;
+  max-width: 700px;
+  width: 100%;
+  max-height: 95vh;
+  overflow: hidden;
+  position: relative;
+  animation: modalSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalSlideUp {
+  from { 
+    transform: translateY(60px) scale(0.95); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateY(0) scale(1); 
+    opacity: 1; 
+  }
+}
+
+/* Close Button */
+.spot-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: none;
+  font-size: 1.5rem;
+  color: var(--gray);
+  cursor: pointer;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.spot-modal-close:hover {
+  background: var(--white);
+  color: var(--dark);
+  transform: scale(1.05);
+}
+
+/* Modal Content */
+.modal-content {
+  padding: 40px;
+  max-height: 95vh;
+  overflow-y: auto;
+}
+
+/* Weather Section */
+.spot-weather {
+  margin: 32px 0;
+  padding: 24px;
+  background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+}
+
+.spot-weather img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--white);
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.spot-weather span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+/* RESTORED: Rating Styles */
+.spot-rating {
+  padding: 8px 0;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 12px;
+  text-align: center;
+  font-weight: 600;
+  color: #f59e0b;
+}
+
+.modern-rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 2px solid #e5e7eb;
+  margin-top: 20px;
+}
+
+.modern-rating-label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.modern-rating-star {
+  font-size: 1.5rem;
+  color: #f59e0b;
+}
+
+.modern-rating-input {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 2px solid #e5e7eb;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.modern-rating-input-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  min-width: 120px;
+}
+
+.modern-rating-select {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 2px solid #d1d5db;
+  font-size: 1rem;
+  font-weight: 600;
+  background: white;
+  color: #1f2937;
+  min-width: 120px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modern-rating-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+
+.modern-rating-btn {
+  padding: 10px 24px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+}
+
+.modern-rating-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+.modern-rating-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Typography adjustments */
+  .fishing-spot-list h2 {
+    font-size: clamp(1.75rem, 8vw, 3rem);
+    margin-bottom: 2.5rem;
+  }
+  
+  .fishing-spot-search {
+    width: 95vw;
+    padding: 18px 28px;
+    font-size: var(--text-base);
+    margin-bottom: 40px;
+  }
+  
+  .share-spot-btn {
+    padding: 16px 28px;
+    font-size: var(--text-base);
+  }
+  
+  /* Card adjustments */
+  .fishing-spot-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 0 16px;
+  }
+  
+  .fishing-spot-info {
+    padding: 28px 24px;
+  }
+  
+  .fishing-spot-title {
+    font-size: var(--text-xl);
+    margin-bottom: 20px;
+  }
+  
+  .fishing-spot-details div {
+    font-size: var(--text-sm);
+    margin-bottom: 12px;
+  }
+  
+  /* Modal adjustments */
+  .modal-content {
+    padding: 28px 20px;
+  }
+  
+  .spot-weather {
+    padding: 20px;
+    gap: 16px;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .spot-weather img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .spot-weather span {
+    font-size: var(--text-base);
+  }
+  
+  /* Rating adjustments */
+  .modern-rating {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 24px 20px;
+  }
+  
+  .modern-rating-label {
+    font-size: var(--text-xl);
+  }
+  
+  .modern-rating-star {
+    font-size: 1.75rem;
+  }
+  
+  .modern-rating-input {
+    padding: 28px 20px;
+  }
+  
+  .modern-rating-input-label {
+    font-size: var(--text-lg);
+  }
+  
+  .rating-controls {
+    flex-direction: column;
+    gap: 18px;
+    align-items: stretch;
+  }
+  
+  .modern-rating-select {
+    width: 100%;
+    min-width: unset;
+    font-size: var(--text-base);
+    padding: 16px 20px;
+    text-align: center;
+  }
+  
+  .modern-rating-btn {
+    width: 100%;
+    min-width: unset;
+    font-size: var(--text-base);
+    padding: 16px 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fishing-spot-list {
+    padding: 30px 12px;
+  }
+  
+  .fishing-spot-list h2 {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+    margin-bottom: 2rem;
+  }
+  
+  .fishing-spot-search {
+    padding: 16px 24px;
+    font-size: var(--text-sm);
+  }
+  
+  .fishing-spot-info {
+    padding: 24px 20px;
+  }
+  
+  .modern-rating-input {
+    padding: 24px 16px;
+  }
+  
+  .modern-rating-select,
+  .modern-rating-btn {
+    padding: 14px 20px;
+    font-size: var(--text-sm);
+  }
+}
+
+/* Loading States */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}

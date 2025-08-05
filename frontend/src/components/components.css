@@ -1,0 +1,14 @@
+/* components.css */
+.welcome-container {
+    text-align: center;
+    margin-top: 50px;
+}
+.btn {
+    margin: 10px;
+    padding: 10px 20px;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+}
